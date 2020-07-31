@@ -34,7 +34,7 @@ class LectureSerializer(serializers.HyperlinkedModelSerializer):
             'user', 'name', 'note_file'
         ]
 
-class LectureVersion(serializers.HyperlinkedModelSerializer):
+class LectureVersionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = LectureVersion
         fields = [

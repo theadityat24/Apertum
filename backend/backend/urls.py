@@ -19,8 +19,8 @@ from rest_framework import routers
 from notes import views
 
 router = routers.DefaultRouter()
-router.register(r'^users/$', views.ListUsers, basename='/')
-router.register(r'^schools/$', views.ListSchools, basename='/')
+router.register(r'users/$', views.ListUsers, basename='/')
+router.register(r'schools/', views.ListSchools, basename='')
 router.register(r'^schools/courses/{school}/$', views.CoursesFromSchool, basename='/')
 router.register(r'^courses/lectures/{course}/$', views.LectureFromCourse, basename='/')
 router.register(r'^lectures/version/{lecture}/$', views.LectureVersionFromLecture, basename='/')
