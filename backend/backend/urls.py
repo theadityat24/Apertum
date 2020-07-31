@@ -19,15 +19,11 @@ from rest_framework import routers
 from notes import views
 
 router = routers.DefaultRouter()
-router.register(r'users/$', views.ListUsers, basename='/')
-router.register(r'schools/', views.ListSchools, basename='')
-router.register(r'^schools/courses/{school}/$', views.CoursesFromSchool, basename='/')
-router.register(r'^courses/lectures/{course}/$', views.LectureFromCourse, basename='/')
-router.register(r'^lectures/version/{lecture}/$', views.LectureVersionFromLecture, basename='/')
-router.register(r'^versionid/{pk}/$', views.LectureVersionID, basename='/')
-router.register(r'^schoolid/{pk}/$', views.SchoolID, basename='/')
-router.register(r'^courseid/{pk}/$', views.CourseID, basename='/')
-router.register(r'^lectureid/{pk}/$', views.LectureID, basename='/')
+router.register(r'users', views.UserViewSet)
+router.register(r'schools', views.SchoolViewSet)
+router.register(r'courses', views.CourseViewSet)
+router.register(r'lectures', views.LectureViewSet)
+router.register(r'LectureVersionViewSet', views.LectureVersionViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
