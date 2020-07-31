@@ -17,12 +17,20 @@ class ListUsers(APIView):
         usernames = [user.username for user in User.objects.all()]
         return Response(usernames)
 
+    @classmethod
+    def get_extra_actions(cls):
+        return []
+
 class ListSchools(APIView):
     permission_classes = [permissions.AllowAny]
 
     def get(self, request, format=None):
         schools = list(School.objects.all())
         return Response(schools)
+    
+    @classmethod
+    def get_extra_actions(cls):
+        return []
 
 class CoursesFromSchool(APIView):
     permission_classes = [permissions.AllowAny]
@@ -34,6 +42,10 @@ class CoursesFromSchool(APIView):
         )
         return Response(courses)
 
+    @classmethod
+    def get_extra_actions(cls):
+        return []
+
 class LectureFromCourse(APIView):
     permission_classes = [permissions.AllowAny]
 
@@ -43,6 +55,10 @@ class LectureFromCourse(APIView):
             .order_by('-date_given')
         )
         return Response(lectures)
+
+    @classmethod
+    def get_extra_actions(cls):
+        return []
 
 class LectureVersionFromLecture(APIView):
     permission_classes = [permissions.AllowAny]
@@ -54,6 +70,10 @@ class LectureVersionFromLecture(APIView):
         )
         return Response(lv)
 
+    @classmethod
+    def get_extra_actions(cls):
+        return []
+
 class LectureVersionID(APIView):
     permisison_classes = [permissions.AllowAny]
 
@@ -62,6 +82,10 @@ class LectureVersionID(APIView):
             list(LectureVersion.objects
             .filter(pk=request.query_params['pk']))[0]
         )
+
+    @classmethod
+    def get_extra_actions(cls):
+        return []
 
 class SchoolID(APIView):
     permission_classes = [permissions.AllowAny]
@@ -72,6 +96,10 @@ class SchoolID(APIView):
             .filter(pk=request.query_params['pk']))[0]
         )
 
+    @classmethod
+    def get_extra_actions(cls):
+        return []
+
 class CourseID(APIView):
     permission_classes = [permissions.AllowAny]
 
@@ -81,6 +109,10 @@ class CourseID(APIView):
             .filter(pk=request.query_params['pk']))[0]
         )
 
+    @classmethod
+    def get_extra_actions(cls):
+        return []
+
 class LectureID(APIView):
     permission_classes = [permissions.AllowAny]
 
@@ -89,3 +121,7 @@ class LectureID(APIView):
             list(Lecture.objects
             .filter(pk=request.query_params['pk']))[0]
         )
+
+    @classmethod
+    def get_extra_actions(cls):
+        return []
