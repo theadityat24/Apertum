@@ -15,7 +15,14 @@ class Course(models.Model):
 
 class Lecture(models.Model):
     date_given = models.DateField()
+    date_added = models.DateTimeField(auto_now=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.SET_NULL)
     name = models.CharField(max_length=300)
+    note_file = models.FileField(upload_to='notes')
 
+class LectureVersion(models.Model):
+    date_changed = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL)
+    note_file = models.FileField(upload_to='notes')
+    
