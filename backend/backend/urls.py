@@ -19,15 +19,15 @@ from rest_framework import routers
 from notes import views
 
 router = routers.DefaultRouter()
-router.register(r'^users/$', views.ListUsers)
-router.register(r'^schools/$', views.ListSchools)
-router.register(r'^schools/courses/{school}/$', views.CoursesFromSchool)
-router.register(r'^courses/lectures/{course}/$', views.LectureFromCourse)
-router.register(r'^lectures/version/{lecture}/$', views.LectureVersionFromLecture)
-router.register(r'^versionid/{pk}/$', views.LectureVersionID)
-router.register(r'^schoolid/{pk}/$', views.SchoolID)
-router.register(r'^courseid/{pk}/$', views.CourseID)
-router.register(r'^lectureid/{pk}/$', views.LectureID)
+router.register(r'^users/$', views.ListUsers, basename='/')
+router.register(r'^schools/$', views.ListSchools, basename='/')
+router.register(r'^schools/courses/{school}/$', views.CoursesFromSchool, basename='/')
+router.register(r'^courses/lectures/{course}/$', views.LectureFromCourse, basename='/')
+router.register(r'^lectures/version/{lecture}/$', views.LectureVersionFromLecture, basename='/')
+router.register(r'^versionid/{pk}/$', views.LectureVersionID, basename='/')
+router.register(r'^schoolid/{pk}/$', views.SchoolID, basename='/')
+router.register(r'^courseid/{pk}/$', views.CourseID, basename='/')
+router.register(r'^lectureid/{pk}/$', views.LectureID, basename='/')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
