@@ -22,7 +22,7 @@ class Lecture(models.Model):
     note_file = models.FileField(upload_to='notes')
 
 class LectureVersion(models.Model):
+    predec = models.ForeignKey(Lecture, on_delete=models.CASCADE)
     date_changed = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL)
     note_file = models.FileField(upload_to='notes')
-    
