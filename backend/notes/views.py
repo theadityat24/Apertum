@@ -21,6 +21,71 @@ class ListSchools(APIView):
     permission_classes = [permissions.AllowAny]
 
     def get(self, request, format=None):
-        schools = [s.name for s in School.objects.all()]
+        schools = list(School.objects.all())
         return Response(schools)
 
+class CoursesFromSchool(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request, format=None):
+        courses = list(Course.objects
+            .filter(school=request.query_params['school'])
+            .order_by('-date_started')
+        )
+        return Response(courses)
+
+class LectureFromCourse(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request, format=None):
+        lectures = list(Lecture.objects
+            .filter(course=request.query_params['course'])
+            .order_by('-date_given')
+        )
+        return Response(lectures)
+
+class LectureVersionFromLecture(APIView):
+    permission_classes = [permissions.AllowAny]
+    
+    def get(self, request, format=None):
+        lv = list(LectureVersion.objects
+            .filter(predec=request.query_params['predec'])
+            .order_by('-date_changed')
+        )
+        return Response(lv)
+
+class LectureVersionID(APIView):
+    permisison_classes = [permissions.AllowAny]
+
+    def get(self, request, format=None):
+        return Response(
+            list(LectureVersion.objects
+            .filter(pk=request.query_params['pk']))[0]
+        )
+
+class SchoolID(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request, format=None):
+        return Response(
+            list(School.objects
+            .filter(pk=request.query_params['pk']))[0]
+        )
+
+class CourseID(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request, format=None):
+        return Response(
+            list(Course.objects
+            .filter(pk=request.query_params['pk']))[0]
+        )
+
+class LectureID(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request, format=None):
+        return Response(
+            list(Lecture.objects
+            .filter(pk=request.query_params['pk']))[0]
+        )
